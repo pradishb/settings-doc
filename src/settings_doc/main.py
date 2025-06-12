@@ -2,8 +2,10 @@ from __future__ import annotations
 
 import itertools
 import logging
+import os
 import re
 import shutil
+import sys
 from enum import Enum, auto
 from inspect import isclass
 from os import listdir
@@ -25,7 +27,9 @@ LOGGER = logging.getLogger(__name__)
 
 @click.group()
 def app():
-    pass
+    # add current working directory relative
+    # to where the settings-docs command started
+    sys.path.append(os.getcwd())
 
 
 class OutputFormat(Enum):
